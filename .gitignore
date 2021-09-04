@@ -132,3 +132,7 @@ dmypy.json
 .idea
 .vscode
 
+# Personal Scripts
+run.sh
+mypy.sh
+

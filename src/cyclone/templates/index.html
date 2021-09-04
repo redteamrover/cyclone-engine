@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cyclone Engine</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Google-Hosted jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Styles -->
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <main class="row">
+        <section class="col-md-4 mb-2 mb-lg-0">
+            <!-- Empty -->
+        </section>
+
+        <section class="col-md-4 mb-2 mb-lg-0">
+            <!-- Main -->
+            <div class="container">
+                <header class="text-center mb-3">
+                    <h1 class="display-4">
+                        Mathematics
+                    </h1>
+
+                    <p class="lead mb-1">
+                        Integration
+                    </p>
+
+                    <hr />
+
+                    <p id="problem-statement" class="text-center" style="visibility: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 105px;">
+                        \[{{ problem|safe }}\]
+                    </p>
+                </header>
+
+                <section class="mb-1">
+                    <form action="{{ url_for('index') }}" method="post">
+                        <div class="mb-2">
+                            <label id="label-response" for="input-response" class="form-label visually-hidden">
+                                Response
+                            </label>
+
+                            <input id="input-response" type="text" name="response" class="form-control" placeholder="Response" autocapitalize="off" autocomplete="off" autofocus="autofocus" required="required" tabindex="1" />
+                        </div>
+
+                        <div class="mb-1 d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+
+        <section class="col-md-4 mb-2 mb-lg-0">
+            <!-- Empty -->
+        </section>
+    </main>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        window.addEventListener('load', () => {
+            window.MathJax.typesetPromise([document.getElementById('problem-statement')]).then(() => {
+                document.getElementById('problem-statement').style.visibility = 'visible';
+            }).catch((error) => {
+                console.error(`[Error] Could not typeset problem: ${error}`);
+            });
+        });
+    </script>
+</body>
+</html>
